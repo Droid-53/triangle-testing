@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Triangle.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assignment6</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Triangle.java</span></div><h1>Triangle.java</h1><pre class="source lang-java linenums">// This program will take a users input and determine the following:
+// 1. If the values accepted are float and not strings or characters
+// 2. If the values accepted are greater than 0 and allow the contruction of a triangle
+// 3. If the values accepted do not create an illegal triangle
+// 4. What kind of triangle will be produced.
+
+// Created By Mital Patel.
+
+import java.util.Scanner;
+import java.lang.Math;
+
+
+class Triangle {
+
+    float l1, l2, l3;
+
+<span class="nc" id="L17">    public Triangle() {</span>
+<span class="nc" id="L18">    }</span>
+
+<span class="nc" id="L20">    public Triangle(float length1, float length2, float length3) {</span>
+<span class="nc" id="L21">        l1 = length1;</span>
+<span class="nc" id="L22">        l2 = length2;</span>
+<span class="nc" id="L23">        l3 = length3;</span>
+<span class="nc" id="L24">    }</span>
+
+    public boolean isTriangle(){
+<span class="nc bnc" id="L27" title="All 24 branches missed.">        if(((l1 == 0) &amp;&amp; (l2 == 0) &amp;&amp; (l3 == 0)) || ((l1 == 1) &amp;&amp; (l2 == 0) &amp;&amp; (l3 == 0)) || ((l1 == 0) &amp;&amp; (l2 == 1) &amp;&amp; (l3 == 0)) || ((l1 == 0) &amp;&amp; (l2 == 0) &amp;&amp; (l3 == 1))){</span>
+<span class="nc" id="L28">            return false;</span>
+        } else {
+<span class="nc" id="L30">            return true;</span>
+        }
+    }
+
+    public boolean isValid(){
+<span class="nc bnc" id="L35" title="All 12 branches missed.">        if((l1 &gt; 0 &amp;&amp; l2 &gt; 0 &amp;&amp; l3 &gt; 0) &amp;&amp; ((l1 + l2 &gt;= l3) &amp;&amp; (l1 + l3 &gt;= l2)) &amp;&amp; (l2 + l3 &gt;= l1)) {</span>
+<span class="nc" id="L36">            return true;</span>
+        } else {
+<span class="nc" id="L38">            return false;</span>
+        }
+    }
+
+    // Has Right Angle
+    public boolean isRight() {
+        // a*a + b*b = c*c (Pythagorean Theorem for Right Triangles)
+<span class="nc bnc" id="L45" title="All 8 branches missed.">        if ((((l1 * l1) + (l2 * l2) == (l3 * l3)) || ((l1 * l1) + (l3 * l3) == (l2 * l2)) || ((l2 * l2) + (l3 * l3) == (l1 * l1))) &amp;&amp; isTriangle()) {</span>
+<span class="nc" id="L46">            return true;</span>
+        } else {
+<span class="nc" id="L48">            return false;</span>
+        }
+    }
+
+    // Has 0 Equal Sides
+    public boolean isScalene() {
+<span class="nc bnc" id="L54" title="All 6 branches missed.">        if ((l1 != l2) &amp;&amp; (l2 != l3) &amp;&amp; (l1 != l3)) {</span>
+<span class="nc" id="L55">            return true;</span>
+        } else {
+<span class="nc" id="L57">            return false;</span>
+        }
+    }
+
+    // Has 2 Equal Sides
+    public boolean isIsosceles() {
+<span class="nc bnc" id="L63" title="All 12 branches missed.">        if (((l1 == l2) &amp;&amp; (l1 != l3)) || ((l1 == l3) &amp;&amp; (l1 != l2)) || ((l2 == l3) &amp;&amp; (l2 != l1))) {</span>
+<span class="nc" id="L64">            return true;</span>
+        } else {
+<span class="nc" id="L66">            return false;</span>
+        }
+    }
+
+    // Has 3 Equal Sides
+    public boolean isEquilateral() {
+<span class="nc bnc" id="L72" title="All 6 branches missed.">        if (((l1 == l2) &amp;&amp; (l1 == l3)) &amp;&amp; isTriangle()) {</span>
+<span class="nc" id="L73">            return true;</span>
+        } else {
+<span class="nc" id="L75">            return false;</span>
+        }
+    }
+
+    void compute(float l1, float l2, float l3) {
+<span class="nc bnc" id="L80" title="All 2 branches missed.">        if (isRight()) {</span>
+<span class="nc" id="L81">            System.out.print(&quot;Right&quot;);</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        } else if (isIsosceles()) {</span>
+<span class="nc" id="L83">            System.out.print(&quot;Isosceles&quot;);</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        } else if (isScalene()) {</span>
+<span class="nc" id="L85">            System.out.print(&quot;Scalene&quot;);</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        } else if (isEquilateral()) {</span>
+<span class="nc" id="L87">            System.out.print(&quot;Equilateral&quot;);</span>
+        } else {
+<span class="nc" id="L89">            System.out.print(&quot;Error. Something went wrong.&quot;);</span>
+        }
+<span class="nc" id="L91">    }</span>
+
+    void getArea(float l1, float l2, float l3){
+        // Herons Formula
+<span class="nc" id="L95">        double s = ((l1 + l2 + l3)/2);</span>
+<span class="nc" id="L96">        double areaSqrt = (s*(s-l1)*(s-l2)*(s-l3));</span>
+<span class="nc" id="L97">        System.out.print(Math.pow(areaSqrt, .5));</span>
+<span class="nc" id="L98">    }</span>
+
+}
+
+<span class="nc" id="L102">class TestClass {</span>
+    public static void main(String[] args){
+<span class="nc" id="L104">        computeIt();</span>
+<span class="nc" id="L105">    }</span>
+
+    private static void computeIt() {
+<span class="nc" id="L108">        Scanner scanner = new Scanner(System.in);</span>
+<span class="nc" id="L109">        String userResponse = &quot;y&quot;;</span>
+<span class="nc" id="L110">        int s1 = 0;</span>
+        do {
+<span class="nc" id="L112">            System.out.println(&quot;Would you like to solve with lengths or points? Please type 1 for Lengths or 2 for Points&quot;);</span>
+<span class="nc" id="L113">            String inputType = scanner.nextLine();</span>
+            try {
+<span class="nc" id="L115">                s1 = Integer.parseInt(inputType);</span>
+<span class="nc" id="L116">            } catch (NumberFormatException nfe){</span>
+<span class="nc" id="L117">                break;</span>
+<span class="nc" id="L118">            }</span>
+
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            if(s1 == 1){</span>
+<span class="nc" id="L121">                TriangleAnswer();</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">            } else if (s1 == 2){</span>
+<span class="nc" id="L123">                PointAnswer();</span>
+            } else {
+<span class="nc" id="L125">                System.out.println(&quot;Please choose another selection.&quot;);</span>
+            }
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        } while(userResponse == &quot;y&quot;);</span>
+<span class="nc" id="L128">        System.out.println(&quot;Invalid Parameter(s)&quot;);</span>
+<span class="nc" id="L129">        return;</span>
+    }
+
+
+
+    public static void TriangleAnswer() {
+<span class="nc" id="L135">        Scanner scanner = new Scanner(System.in);</span>
+        String s1, s2, s3;
+<span class="nc" id="L137">        float f1=3, f2=3, f3=3;</span>
+
+<span class="nc" id="L139">        System.out.println(&quot;Please enter 3 side lengths, one at a time.&quot;);</span>
+<span class="nc" id="L140">        System.out.println(&quot;First Length:&quot;);</span>
+<span class="nc" id="L141">        s1 = scanner.nextLine();</span>
+<span class="nc" id="L142">        System.out.println(&quot;Second Length:&quot;);</span>
+<span class="nc" id="L143">        s2 = scanner.nextLine();</span>
+<span class="nc" id="L144">        System.out.println(&quot;Third Length:&quot;);</span>
+<span class="nc" id="L145">        s3 = scanner.nextLine();</span>
+
+        try {
+<span class="nc" id="L148">            f1 = Float.parseFloat(s1);</span>
+<span class="nc" id="L149">            f2 = Float.parseFloat(s2);</span>
+<span class="nc" id="L150">            f3 = Float.parseFloat(s3);</span>
+
+<span class="nc" id="L152">            Triangle t1 = new Triangle(f1, f2, f3);</span>
+<span class="nc bnc" id="L153" title="All 4 branches missed.">            if(t1.isTriangle() &amp;&amp; t1.isValid()){</span>
+<span class="nc" id="L154">                System.out.println(&quot;Triangle is Good&quot;);</span>
+            } else {
+<span class="nc" id="L156">                System.out.println(&quot;Triangle is BAD&quot;);</span>
+
+            }
+<span class="nc" id="L159">            System.out.println(&quot;First Length: &quot; + s1);</span>
+<span class="nc" id="L160">            System.out.println(&quot;Second Length: &quot; + s2);</span>
+<span class="nc" id="L161">            System.out.println(&quot;Third Length: &quot; + s3);</span>
+<span class="nc" id="L162">            t1.compute(f1, f2, f3);</span>
+<span class="nc" id="L163">            t1.getArea(f1, f2, f3);</span>
+
+<span class="nc" id="L165">        } catch (NumberFormatException nfe){</span>
+<span class="nc" id="L166">            System.out.println(&quot;Invalid Parameter(s)&quot;);</span>
+<span class="nc" id="L167">        }</span>
+
+
+<span class="nc" id="L170">    }</span>
+
+
+    public static void PointAnswer() {
+<span class="nc" id="L174">        Scanner scanner = new Scanner(System.in);</span>
+        String s1, s2, s3, s4, s5, s6;
+        float p1, p2, p3, p4, p5, p6;
+<span class="nc" id="L177">        System.out.println(&quot;Please enter 3 Ordered Pairs&quot;);</span>
+<span class="nc" id="L178">        System.out.println(&quot;First Pair:&quot;);</span>
+<span class="nc" id="L179">        s1 = scanner.next();</span>
+<span class="nc" id="L180">        s2 = scanner.next();</span>
+<span class="nc" id="L181">        System.out.println(&quot;Second Pair:&quot;);</span>
+<span class="nc" id="L182">        s3 = scanner.next();</span>
+<span class="nc" id="L183">        s4 = scanner.next();</span>
+<span class="nc" id="L184">        System.out.println(&quot;Third Pair:&quot;);</span>
+<span class="nc" id="L185">        s5 = scanner.next();</span>
+<span class="nc" id="L186">        s6 = scanner.next();</span>
+
+        try {
+<span class="nc" id="L189">            p1 = Float.parseFloat(s1);</span>
+<span class="nc" id="L190">            p2 = Float.parseFloat(s2);</span>
+<span class="nc" id="L191">            p3 = Float.parseFloat(s3);</span>
+<span class="nc" id="L192">            p4 = Float.parseFloat(s4);</span>
+<span class="nc" id="L193">            p5 = Float.parseFloat(s5);</span>
+<span class="nc" id="L194">            p6 = Float.parseFloat(s6);</span>
+
+<span class="nc" id="L196">            System.out.println(&quot;First Pair: (&quot; + p1 + &quot;,&quot; + p2 + &quot;)&quot;);</span>
+<span class="nc" id="L197">            System.out.println(&quot;Second Pair: (&quot; + p3 + &quot;,&quot; + p4 + &quot;)&quot;);</span>
+<span class="nc" id="L198">            System.out.println(&quot;Third Pair: (&quot; + p5 + &quot;,&quot; + p6 + &quot;)&quot;);</span>
+
+            float l1, l2, l3;
+<span class="nc" id="L201">            double d1 = Math.pow(((Math.pow((p3 - p1), 2) + Math.pow((p4-p2), 2))), .5);</span>
+<span class="nc" id="L202">            double d2 = Math.pow(((Math.pow((p5 - p3), 2) + Math.pow((p6-p4), 2))), .5);</span>
+<span class="nc" id="L203">            double d3 = Math.pow(((Math.pow((p5 - p1), 2) + Math.pow((p6-p2), 2))), .5);</span>
+
+<span class="nc" id="L205">            l1 = (float)d1;</span>
+<span class="nc" id="L206">            l2 = (float)d2;</span>
+<span class="nc" id="L207">            l3 = (float)d3;</span>
+<span class="nc" id="L208">            System.out.println(&quot;Lengths from First to Second Point: &quot; + l1);</span>
+<span class="nc" id="L209">            System.out.println(&quot;Lengths from Second to Third Point: &quot; + l2);</span>
+<span class="nc" id="L210">            System.out.println(&quot;Lengths from First to Third Point: &quot; + l3);</span>
+<span class="nc" id="L211">            Triangle t1 = new Triangle(l1, l2, l3);</span>
+<span class="nc" id="L212">            t1.compute(l1, l2, l3);</span>
+
+<span class="nc" id="L214">        } catch (NumberFormatException nfe){</span>
+<span class="nc" id="L215">            System.out.println(&quot;Invalid Parameter(s)&quot;);</span>
+<span class="nc" id="L216">        }</span>
+<span class="nc" id="L217">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
